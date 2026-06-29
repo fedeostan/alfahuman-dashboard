@@ -1,12 +1,14 @@
 import { auth, signOut } from '@/auth'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export default async function DashboardPage() {
   const session = await auth()
   if (!session?.user) redirect('/')
 
-  const { email, name, id } = session.user
+  const { email, name, id, role } = session.user
   const botLink = `https://t.me/alfahackers_bot?start=${id}`
+  const canShip = ['owner', 'admin', 'sales'].includes(role)
 
   return (
     <main className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
@@ -18,13 +20,23 @@ export default async function DashboardPage() {
           href={botLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full bg-sky-500 hover:bg-sky-400 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-6"
+          className="flex items-center justify-center gap-2 w-full bg-sky-500 hover:bg-sky-400 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-3"
         >
           <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/>
           </svg>
           Hablar con el bot
         </a>
+
+        {canShip && (
+          <Link
+            href="/envios"
+            className="flex items-center justify-center gap-2 w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-6 border border-zinc-700"
+          >
+            <span className="text-lg leading-none">📦</span>
+            Envíos pendientes
+          </Link>
+        )}
 
         <form
           action={async () => {

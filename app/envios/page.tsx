@@ -1,5 +1,6 @@
 import { auth, signOut } from '@/auth'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { n8nConfig, type PendingEnvio } from '@/lib/n8n'
 import EnviosClient from './envios-client'
 
@@ -36,6 +37,12 @@ export default async function EnviosPage() {
       <div className="w-full max-w-2xl">
         <header className="flex items-center justify-between mb-6">
           <div>
+            <Link
+              href="/dashboard"
+              className="text-zinc-500 hover:text-zinc-300 text-sm transition-colors inline-flex items-center gap-1 mb-2"
+            >
+              <span aria-hidden>←</span> Inicio
+            </Link>
             <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1">Envíos</p>
             <h1 className="text-white text-lg font-semibold">Pendientes de aprobar</h1>
           </div>
