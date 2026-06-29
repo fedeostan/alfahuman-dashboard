@@ -4,7 +4,7 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth
   const { pathname } = req.nextUrl
 
-  if (!isLoggedIn && pathname.startsWith('/dashboard')) {
+  if (!isLoggedIn && (pathname.startsWith('/dashboard') || pathname.startsWith('/envios'))) {
     return Response.redirect(new URL('/', req.url))
   }
   if (isLoggedIn && pathname === '/') {
@@ -13,5 +13,5 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ['/', '/dashboard/:path*'],
+  matcher: ['/', '/dashboard/:path*', '/envios/:path*'],
 }
