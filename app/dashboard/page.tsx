@@ -31,10 +31,20 @@ export default async function DashboardPage() {
         {canShip && (
           <Link
             href="/envios"
-            className="flex items-center justify-center gap-2 w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-6 border border-zinc-700"
+            className="flex items-center justify-center gap-2 w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-3 border border-zinc-700"
           >
             <span className="text-lg leading-none">📦</span>
             Envíos pendientes
+          </Link>
+        )}
+
+        {canShip && (
+          <Link
+            href="/dashboard/southpost"
+            className="flex items-center justify-center gap-2 w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-6 border border-zinc-700"
+          >
+            <span className="text-lg leading-none">🚚</span>
+            Seguimiento Southpost
           </Link>
         )}
 
