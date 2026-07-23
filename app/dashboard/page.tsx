@@ -30,11 +30,11 @@ export default async function DashboardPage() {
 
         {canShip && (
           <Link
-            href="/envios"
+            href="/shipments"
             className="flex items-center justify-center gap-2 w-full bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl px-4 py-4 text-base transition-colors mb-3 border border-zinc-700"
           >
             <span className="text-lg leading-none">📦</span>
-            Envíos pendientes
+            Envíos — confirmar y seguir
           </Link>
         )}
 
